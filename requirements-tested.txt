@@ -1,0 +1,14 @@
+# Environment in which the test-suite and smoke runs were executed (Python 3.12, Linux x86_64, CPU only)
+torch==2.14.1+cu130
+torchvision==0.29.1+cu130
+numpy==2.4.4
+scipy==1.17.1
+opencv (cv2)==4.13.0
+scikit-learn==1.8.0
+PyWavelets==1.8.0
+pandas==3.0.2
+PyYAML==6.0.3
+matplotlib==3.10.8
+Pillow==12.1.1
+pytest==9.1.1
+joblib==1.5.3

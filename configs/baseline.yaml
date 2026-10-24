@@ -1,0 +1,12 @@
+# Stage A: baselines. CNN from scratch vs pretrained ResNet-18 (RGB).
+experiment: {name: baseline, output_dir: outputs}
+data: {root: data/cassava, cache_dir: data/cache, image_size: 128}
+seeds: [0, 1, 2]
+train: {epochs: 30, batch_size: 64, lr: 0.001}
+sweep:
+  variants:
+    - name: cnn_rgb
+      set: {model.kind: cnn}
+    - name: resnet18_rgb
+      # downloads ImageNet weights on first use (needs internet); set model.transfer.pretrained=false to train from scratch
+      set: {model.kind: transfer, data.normalize: imagenet, train.lr: 0.001}

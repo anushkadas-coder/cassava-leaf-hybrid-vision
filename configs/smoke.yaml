@@ -1,0 +1,17 @@
+# Tiny settings for pipeline smoke tests on SYNTHETIC data only (results are NOT scientific evidence).
+extends: baseline.yaml
+experiment: {name: smoke, output_dir: outputs/smoke}
+data: {cache_dir: data/synthetic_cache, image_size: 64, stats_samples: 200}
+seeds: [0]
+train: {epochs: 4, batch_size: 32, early_stopping_patience: 3}
+eval: {bootstrap: 200, robustness: true, robustness_subset: 60, latency_runs: 5}
+model: {cnn: {widths: [8, 16, 24, 32]}, transfer: {pretrained: false, freeze_epochs: 1}}
+sweep:
+  variants:
+    - {name: cnn_rgb,   set: {model.kind: cnn}}
+    - {name: cnn_lab,   set: {data.representation: lab}}
+    - {name: cnn_hsvcirc_photo, set: {data.representation: hsv_circ, data.augment.photometric: true}}
+    - {name: fusion,    set: {model.kind: fusion}}
+    - {name: resnet18_scratch, set: {model.kind: transfer, data.normalize: train_stats}}
+    - {name: freq_logreg, set: {model.kind: classical}}
+    - {name: cnn_hsvblank, set: {data.localization: hsv_blank}}

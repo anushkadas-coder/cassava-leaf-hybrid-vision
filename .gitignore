@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.venv/
+data/cassava/
+data/cache/
+data/synthetic/
+outputs/*
+!outputs/.gitkeep
+*.pt
+*.joblib
+.ipynb_checkpoints/

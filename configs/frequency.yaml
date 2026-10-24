@@ -1,0 +1,15 @@
+# Stage C: frequency features. Interpretable classical baselines, CNN+frequency fusion, and the controls that tell
+# "frequency information" apart from "extra parameters".
+extends: baseline.yaml
+eval: {robustness: true}
+sweep:
+  variants:
+    - {name: cnn_rgb,               set: {model.kind: cnn}}
+    - {name: freq_only_logreg,      set: {model.kind: classical, model.classical.features: [freq], model.classical.classifier: logreg}}
+    - {name: freq_only_hgb,         set: {model.kind: classical, model.classical.features: [freq], model.classical.classifier: hgb}}
+    - {name: color_only_logreg,     set: {model.kind: classical, model.classical.features: [color], data.representation: lab}}
+    - {name: color_freq_hgb,        set: {model.kind: classical, model.classical.features: [freq, color], model.classical.classifier: hgb, data.representation: lab}}
+    - {name: dwt_only_logreg,       set: {model.kind: classical, model.classical.features: [freq], frequency.use_fft: false}}
+    - {name: fusion_cnn_freq,       set: {model.kind: fusion}}
+    - {name: fusion_control_shuffle, set: {model.kind: fusion, model.fusion.control: shuffle}}
+    - {name: fusion_control_zeros,  set: {model.kind: fusion, model.fusion.control: zeros}}

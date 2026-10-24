@@ -1,0 +1,13 @@
+# Stage D + combined model. Run ONLY after colour/frequency results justify it (see docs/experiments.md decision rules).
+# Localisation without annotations: HSV mask crop / background blanking. Viola-Jones needs a trained cascade
+# (data.cascade_path) - see docs/viola_jones.md; its variant is listed but will raise a clear error without one.
+extends: baseline.yaml
+eval: {robustness: true}
+sweep:
+  variants:
+    - {name: cnn_rgb,         set: {model.kind: cnn}}
+    - {name: cnn_hsvcrop,     set: {data.localization: hsv_crop}}
+    - {name: cnn_hsvblank,    set: {data.localization: hsv_blank}}
+    - {name: fusion_lab,      set: {model.kind: fusion, data.representation: lab}}
+    - {name: fusion_lab_hsvcrop, set: {model.kind: fusion, data.representation: lab, data.localization: hsv_crop}}
+    # - {name: cnn_cascade,   set: {data.localization: cascade, data.cascade_path: path/to/leaf_cascade.xml}}

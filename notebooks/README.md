@@ -1,0 +1,1 @@
+Place exploratory notebooks here (e.g. viewing `outputs/summary.csv`, Grad-CAM galleries). Notebooks are not part of the reproducible pipeline; every reported number must come from `scripts/` and the experiment log.

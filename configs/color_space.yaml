@@ -1,0 +1,14 @@
+# Stage B: colour representation with the SAME architecture/budget. H1: Lab/HSV beat RGB in clean macro-F1 (weak prior);
+# H2: they degrade less under illumination shifts (stronger prior). Run photometric-augmentation variants to see whether
+# augmentation closes the gap (it competes with H2).
+extends: baseline.yaml
+eval: {robustness: true}
+sweep:
+  variants:
+    - {name: cnn_rgb,        set: {data.representation: rgb}}
+    - {name: cnn_hsv,        set: {data.representation: hsv}}
+    - {name: cnn_hsv_circ,   set: {data.representation: hsv_circ}}
+    - {name: cnn_lab,        set: {data.representation: lab}}
+    - {name: cnn_rgb_lab,    set: {data.representation: rgb_lab}}
+    - {name: cnn_rgb_photoaug, set: {data.representation: rgb, data.augment.photometric: true}}
+    - {name: cnn_lab_photoaug, set: {data.representation: lab, data.augment.photometric: true}}
