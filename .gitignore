@@ -1,13 +1,31 @@
+# Python
 __pycache__/
 *.pyc
 .pytest_cache/
 *.egg-info/
 .venv/
+build/
+dist/
+
+# Datasets and caches (large; never commit)
 data/cassava/
 data/cache/
 data/synthetic/
+data/synthetic_cache/
+*.npy
+
+# Experiment outputs (keep the folder, ignore its contents)
 outputs/*
 !outputs/.gitkeep
+
+# Model checkpoints and saved models
 *.pt
 *.joblib
+
+# Notebooks
 .ipynb_checkpoints/
+
+# Editors and OS
+.DS_Store
+.vscode/
+.idea/
